@@ -11,6 +11,12 @@ public class Complex {
 		this.img = img;
 		
 	}
+	public double getReal() {
+		return this.real;
+	}
+	public double getImg() {
+		return this.img;
+	}
 	public static Complex conjugado(Complex c){
      return new Complex(c.real, -c.img);
 	}
@@ -24,7 +30,7 @@ public class Complex {
 	} 
 	public  static Complex producto(Complex c1, Complex c2) {
 		double x= c1.real*c2.real - c1.img* c2.img;
-		double y= c1.real*c2.real + c1.img* c2.img;
+		double y= c1.real*c2.real + c2.img* c1.img;
 		return new Complex(x,y);	
 	}
 	public static Complex division(Complex c1, Complex c2) {
@@ -55,17 +61,102 @@ public class Complex {
 		double angulo = Math.atan((c.img/c.real));
 		return angulo;
 	}
+	public static Complex[][] sumaM(Complex[][] m1, Complex[][] m2){
+		Complex r[][];
+		int i,j,fila,columna;
+		fila = m1.length;
+        columna = m1[0].length;
+        r = new Complex [fila][columna];
+
+        for (i = 0; i < fila; i++) {
+            for (j = 0; j < columna; j++) {
+                r[i][j] = suma(m1[i][j], m2[i][j]);
+            }
+        }
+        return r;
+    }
+	public static Complex[][] restaM(Complex[][] m1, Complex[][] m2){
+		Complex r[][];
+		int i,j,fila,columna;
+		fila = m1.length;
+        columna = m1[0].length;
+        r = new Complex [fila][columna];
+
+        for (i = 0; i < fila; i++) {
+            for (j = 0; j < columna; j++) {
+                r[i][j] = resta(m1[i][j], m2[i][j]);
+            }
+        }
+        return r;
+    }
+	public static Complex[][] productoScalar(Complex c1, Complex[][] m1){
+		Complex r[][];
+		int i,j,fila,columna;
+		fila = m1.length;
+        columna = m1[0].length;
+		r = new Complex [fila][columna];
+		for (i = 0; i < fila; i++) {
+            for (j = 0; j < columna; j++) {
+                r[i][j] = producto(c1, m1[i][j]);
+            }
+		}
+		return r;
+	}
 	
-	public static void main(String[] args)
-		   {
-		      Complex a = new Complex(40,56);
-		      Complex b = new Complex(10,-10);
-		      Complex c = division(a,b);
-		      Double d = modulo(a);
-		      System.out.println(c.real);
-		      System.out.println(c.img);
-		      System.out.println(d);
-		   }
+	public static Complex[][] productoM(Complex[][] m1, Complex[][] m2) {
+        Complex sum; 
+        Complex r [][] = new Complex [m1.length][m1[0].length];
+
+        for (int i = 0; i < m1.length; i++) {
+            for (int j = 0; j < m2[0].length; j++) {
+                sum = new Complex(0,0);
+                for(int k=0;k < m1[0].length;k++){
+                    sum = suma(sum,producto(m1[i][k],m2[k][j]));
+                }
+                r[i][j]=sum;
+            }
+        }
+        return r;
+        }
+	public static Complex[][] traspuesta(Complex[][] m1){ 
+		int i,j,fila,columna;
+		fila = m1.length;
+		columna = m1[0].length;
+	    Complex r [][] = new Complex [m1.length][m1[0].length];
+		for (i=0; i<fila; i++){
+			for (j=0; j<columna; j++) {
+				r[j][i] = m1[i][j];
+			}				
+		}
+		return r;
+	} 
+	public static Complex[][] conjugadoM(Complex[][] m1){
+		int i,j,fila,columna;
+		fila = m1.length;
+		columna = m1[0].length;
+		Complex r [][] = new Complex [m1.length][m1[0].length];
+		for (i=0; i<fila; i++){
+			for (j=0; j<columna; j++) {
+				r[j][j] = conjugado(m1[i][j]);	
+			}
+		}
+		return r;
+		
+	}
+	
+	public static void main(String[] args){
+			Complex[][] p = {{new Complex(5,-1),new Complex(5,-1)},{new Complex(5,-1),new Complex(5,-1)}};
+		    Complex a = new Complex(5,-1);
+		    Complex b = new Complex(4,-3);
+		    Complex c = producto(a,b);
+		    Complex[][] r = productoScalar(b,p);
+		    Double d = modulo(a);
+		    System.out.println(c.real);
+		    System.out.println(c.img);
+		    System.out.println(d);
+		    System.out.println(r[0][0].real);
+		    System.out.println(r[0][0].img);
+	}
 		
 	    
 }

@@ -44,6 +44,17 @@ public class ComplexMatriz {
 		}
 		return new ComplexMatriz(r);
 	}
+	public Double moduloM() {
+		Double r = 0.0;
+		for (int i=0; i< matriz.length; i++){
+			for (int j=0; j<matriz[0].length; j++) {
+				r += Math.pow(matriz[i][j].modulo(),2);
+	
+			}
+		}
+		return Math.sqrt(r);
+	}
+
 	public Complex[][] getMatriz(){
 		return matriz;
 	}

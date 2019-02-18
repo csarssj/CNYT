@@ -77,7 +77,14 @@ public class ComplexMath{
             }
         }
         return new ComplexMatriz(r);
-        }
+    }
+	public Double distancia(Complex[][] m1, Complex[][] m2) {
+		ComplexMatriz r  = new ComplexMatriz(new Complex [m1.length][m1[0].length]);
+		Double r2= 0.0;
+		r = restaM(m1,m2);
+		r2 = r.moduloM();
+		return  r2;
+	}
 	
 	
 }

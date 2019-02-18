@@ -20,7 +20,7 @@ class ComplexTest {
 	    Complex b = new Complex(4,-3);
 	    Complex r = ComplexMath.producto(a,b);
 	    assertEquals(r.getReal(),17.0);
-	    assertEquals(r.getImg(),23.0);
+	    assertEquals(r.getImg(),-19.0);
 	}
 
 	@Test
@@ -29,7 +29,7 @@ class ComplexTest {
 	    Complex c1 = new Complex(4,-3);
 	    Complex[][] r = ComplexMath.productoScalar(c1,a);
 	    assertEquals(r[0][0].getReal(),17.0);
-	    assertEquals(r[0][0].getImg(),23.0);
+	    assertEquals(r[0][0].getImg(),-19.0);
 	}
 	@Test
 	void traspuestaCojungadoTest() {

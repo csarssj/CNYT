@@ -31,7 +31,6 @@ public class Complex {
 	}	
 	public static void main(String[] args){
 			ComplexMath complex = new ComplexMath();
-
 			Complex[][] p = {{new Complex(5,-1),new Complex(5,-1)},{new Complex(5,-1),new Complex(5,-1)}};
 		    Complex a = new Complex(5,-1);
 		    Complex b = new Complex(4,-3);

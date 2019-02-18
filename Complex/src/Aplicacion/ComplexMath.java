@@ -1,14 +1,12 @@
 package Aplicacion;
 
 public class ComplexMath{
-	private Complex c1;
-	private Complex c2;
 	public ComplexMath(){
 	}
 	public static Complex suma (Complex c1, Complex c2) {
 		double x= c1.getReal() + c2.getReal();
 		double y= c1.getImg() + c2.getImg();
-		return new Complex(x,y);
+		return new Complex(x, y);
 	} 
 	public  static Complex producto(Complex c1, Complex c2) {
 		double x= c1.getReal()*c2.getReal() - c1.getImg()* c2.getImg();
@@ -38,52 +36,37 @@ public class ComplexMath{
 		double y = c.getReal()*Math.sin(c.getImg());
 		return new Complex(x , y);
 	}
-	public static Complex[][] sumaM(Complex[][] m1, Complex[][] m2){
-		Complex r[][];
-		int i,j,fila,columna;
-		fila = m1.length;
-        columna = m1[0].length;
-        r = new Complex [fila][columna];
-
-        for (i = 0; i < fila; i++) {
-            for (j = 0; j < columna; j++) {
+	public static ComplexMatriz sumaM(Complex[][] m1, Complex[][] m2){
+		Complex r [][] = new Complex [m1.length][m1[0].length];
+		for (int i=0; i< m1.length; i++){
+			for (int j=0; j<m1[0].length; j++) {
                 r[i][j] = suma(m1[i][j], m2[i][j]);
             }
         }
-        return r;
+        return  new ComplexMatriz(r);
     }
-	public static Complex[][] restaM(Complex[][] m1, Complex[][] m2){
-		Complex r[][];
-		int i,j,fila,columna;
-		fila = m1.length;
-        columna = m1[0].length;
-        r = new Complex [fila][columna];
-
-        for (i = 0; i < fila; i++) {
-            for (j = 0; j < columna; j++) {
+	public static ComplexMatriz restaM(Complex[][] m1, Complex[][] m2){
+		Complex r [][] = new Complex [m1.length][m1[0].length];
+		for (int i=0; i< m1.length; i++){
+			for (int j=0; j<m1[0].length; j++) {
                 r[i][j] = resta(m1[i][j], m2[i][j]);
             }
         }
-        return r;
+        return  new ComplexMatriz(r);
     }
-	public static Complex[][] productoScalar(Complex c1, Complex[][] m1){
-		Complex r[][];
-		int i,j,fila,columna;
-		fila = m1.length;
-        columna = m1[0].length;
-		r = new Complex [fila][columna];
-		for (i = 0; i < fila; i++) {
-            for (j = 0; j < columna; j++) {
-                r[i][j] = producto(c1, m1[i][j]);
+	public static ComplexMatriz productoScalar(Complex c1, Complex[][] m1){
+		Complex r [][] = new Complex [m1.length][m1[0].length];
+		for (int i=0; i< m1.length; i++){
+			for (int j=0; j<m1[0].length; j++) {               
+				r[i][j] = producto(c1, m1[i][j]);
             }
 		}
-		return r;
+		return new ComplexMatriz(r);
 	}
 	
-	public static Complex[][] productoM(Complex[][] m1, Complex[][] m2) {
+	public static ComplexMatriz productoM(Complex[][] m1, Complex[][] m2) {
         Complex sum; 
         Complex r [][] = new Complex [m1.length][m1[0].length];
-
         for (int i = 0; i < m1.length; i++) {
             for (int j = 0; j < m2[0].length; j++) {
                 sum = new Complex(0,0);
@@ -93,32 +76,8 @@ public class ComplexMath{
                 r[i][j]=sum;
             }
         }
-        return r;
+        return new ComplexMatriz(r);
         }
-	public static Complex[][] traspuesta(Complex[][] m1){ 
-		int i,j,fila,columna;
-		fila = m1.length;
-		columna = m1[0].length;
-	    Complex r [][] = new Complex [m1.length][m1[0].length];
-		for (i=0; i<fila; i++){
-			for (j=0; j<columna; j++) {
-				r[j][i] = m1[i][j];
-			}				
-		}
-		return r;
-	} 
-	public static Complex[][] conjugadoM(Complex[][] m1){
-		Complex c = new Complex();
-		int i,j,fila,columna;
-		fila = m1.length;
-		columna = m1[0].length;
-		Complex r [][] = new Complex [m1.length][m1[0].length];
-		for (i=0; i<fila; i++){
-			for (j=0; j<columna; j++) {
-				r[j][j] = c.conjugado(m1[i][j]);	
-			}
-		}
-		return r;
-		
-	}
+	
+	
 }

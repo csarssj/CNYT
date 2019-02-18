@@ -2,46 +2,51 @@ package Aplicacion;
 
 public class Complex {
 	private double real;
-	private double img;
-	public Complex() {
-		real=0.0;
-		img=0.0;
-	}
+	private double img;	
 	public Complex(double real, double img) {
 		this.real= real;
 		this.img = img;
 		
 	}
 	public double getReal() {
-		return this.real;
+		return real;
 	}
 	public double getImg() {
-		return this.img;
+		return img;
 	}
-	public static Complex conjugado(Complex c){
-     return new Complex(c.real, -c.img);
+	public  Complex conjugado(){
+     return new Complex(real, img*(-1));
 	}
-	public static double modulo(Complex c) {
-		return Math.sqrt(c.real*c.real + c.img*c.img);
+	public  Complex inverso() {
+		return new Complex(real*(-1),img*(-1));
+	}
+	public  double modulo( ) {
+		return Math.sqrt(real*real + img*img);
 	}
 	
-	public static double fase(Complex c) {
-		double angulo = Math.atan((c.img/c.real));
+	public  double fase() {
+		double angulo = Math.atan((img/real));
 		return angulo;
 	}	
+	public boolean equals(Complex c){
+        return real == c.getReal() && img == c.getImg();
+    }
 	public static void main(String[] args){
-			ComplexMath complex = new ComplexMath();
 			Complex[][] p = {{new Complex(5,-1),new Complex(5,-1)},{new Complex(5,-1),new Complex(5,-1)}};
+			Complex[][] p1 = {{new Complex(5,-1),new Complex(1,0)},{new Complex(0,1),new Complex(5,-1)}};
 		    Complex a = new Complex(5,-1);
 		    Complex b = new Complex(4,-3);
-		    Complex c = complex.producto(a,b);
-		    Complex[][] r = complex.productoScalar(b,p);
-		    Double d = modulo(a);
+		    Complex c = ComplexMath.producto(a,b);
+		    Complex m = a.conjugado();
+		    ComplexMatriz r = ComplexMath.productoScalar(b,p);
+		    Double d = a.modulo();
 		    System.out.println(c.real);
 		    System.out.println(c.img);
 		    System.out.println(d);
-		    System.out.println(r[0][0].real);
-		    System.out.println(r[0][0].img);
+		    System.out.println(m.real);
+		    System.out.println(m.img);
+		    System.out.println(r.getMatriz()[0][0].real);
+		    System.out.println(r.getMatriz()[0][0].img);
 	}
 		
 	    

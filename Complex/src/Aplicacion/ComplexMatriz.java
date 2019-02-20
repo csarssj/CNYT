@@ -2,12 +2,7 @@ package Aplicacion;
 
 public class ComplexMatriz {
 	private Complex[][] matriz;
-	private int i,j;
-	public ComplexMatriz(int i, int j) {
-		this.i=i;
-		this.j=j;
-		this.matriz= new Complex [i][j];
-	}
+
 	public ComplexMatriz(Complex[][] r) {
 		this.matriz = r;
 	}
@@ -54,18 +49,24 @@ public class ComplexMatriz {
 		}
 		return Math.sqrt(r);
 	}
-
+	public boolean hermitiana() {
+		return this.equals(this.adjunta());
+	}
+	public boolean unitaria() {
+		return ComplexMath.productoM(this.getMatriz(),this.adjunta().getMatriz()).equals(ComplexMath.productoM(this.adjunta().getMatriz(),this.getMatriz()));
+	}
+	
 	public Complex[][] getMatriz(){
 		return matriz;
 	}
-	public boolean equals(ComplexMatriz complexMatrix){
-        if(matriz.length != complexMatrix.getMatriz().length || matriz[0].length != complexMatrix.getMatriz()[0].length){
+	public boolean equals(ComplexMatriz m1){
+        if(matriz.length != m1.getMatriz().length || matriz[0].length != m1.getMatriz()[0].length){
             return false;
         }
         boolean bandera = true;
         for(int i = 0; i< matriz.length && bandera; i++){
             for(int j = 0; j< matriz[0].length && bandera; j++){
-                if(!matriz[i][j].equals(complexMatrix.getMatriz()[i][j])) bandera = false;
+                if(!matriz[i][j].equals(m1.getMatriz()[i][j])) bandera = false;
             }
         }
         return bandera;

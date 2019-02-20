@@ -14,6 +14,7 @@ class ComplexTest {
 	    Complex r2 = new Complex(9,-4);
 	    assertEquals(r.getReal(),9.0);
 	    assertEquals(r.getImg(),-4.0);
+	    assertTrue(r.equals(r2));
 	}
 	@Test
 	void productoTest() {

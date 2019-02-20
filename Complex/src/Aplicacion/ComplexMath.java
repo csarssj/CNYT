@@ -85,6 +85,34 @@ public class ComplexMath{
 		r2 = r.moduloM();
 		return  r2;
 	}
+	public static Complex productoInterno(Complex[][] m1, Complex[][] m2) {
+			Complex r = new Complex(0,0);
+	 		for(int i = 0; i< m1.length; i++){
+	 			for(int j = 0; j< m1[0].length; j++){
+	 				r = suma(r,producto(m1[i][j],m2[i][j]));
+	 			}
+	 		}
+	 		return r;
+	}
+	
+	public static ComplexMatriz productoTensor(Complex[][] m1, Complex[][] m2){
+        Complex[][] r = new Complex [m1.length*m2.length][m1[0].length*m2[0].length];
+        for(int i=0;i<m1.length;i++){
+            for(int j=0;j<m1[0].length;j++){
+                for(int k=0;k<m2.length;k++){
+                    for(int l=0;l<m2[0].length;l++){
+                            r[i*m2.length+k][j*m2[0].length+l]=producto(m1[i][j],m2[k][l]);
+                        }
+
+                    }
+                }
+
+            }
+
+
+        return new ComplexMatriz(r);
+
+    }
 	
 	
 }

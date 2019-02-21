@@ -15,7 +15,6 @@ Para utilizar dicha libreria se debe tener instalado algún IDE (Netbeans, Eclip
     - Division entre complejos y matrices
     - Modulo de un complejo y matriz
     - Fase de un complejo
-    - Producto interno
     - Adjunta de una matriz
     - Traspuesta de una matriz
     - Producto Tensor

@@ -30,7 +30,21 @@ class ComplexTest {
 		Complex r = a.conjugado();
 		assertTrue(r.equals(new Complex (5,1)));
 	}
-
+	@Test
+	void unitariaTest() {
+		ComplexMatriz r = new ComplexMatriz(new Complex[][]{{new Complex(1,1),new Complex(1,-1)},{new Complex(1,-1),new Complex(1,1)}});
+        assertTrue(r.unitaria());
+	}    
+	@Test
+	void hermitianaTest() {
+		ComplexMatriz r = new ComplexMatriz(new Complex[][]{{new Complex(2,0),new Complex(1,1)},{new Complex(1,-1),new Complex(1,0)}});
+		assertTrue(r.hermitiana());
+	}
+	@Test
+	void moduloTest() {
+		Complex c = new Complex(5,-1);
+		assertEquals(c.modulo(),5.0990195135927845);
+	}
 	@Test
 	void productoScalarTest() {
 		Complex[][] a = {{new Complex(5,-1),new Complex(5,-1)},{new Complex(5,-1),new Complex(5,-1)}};
@@ -53,6 +67,32 @@ class ComplexTest {
 		ComplexMatriz r = a.conjugadoM();
 		assertTrue(r.equals(b));
 	}
-	
-
+	@Test
+	void adjuntaTest() {
+		ComplexMatriz a = new ComplexMatriz(new Complex[][]	{{new Complex(5,-1),new Complex(1,0)},{new Complex(0,1),new Complex(5,-1)}});
+		ComplexMatriz b = new ComplexMatriz(new Complex[][]{{new Complex(5,1),new Complex(0,-1)},{new Complex(1,0),new Complex(5,1)}});
+		ComplexMatriz r = a.adjunta();
+		assertTrue(r.equals(b));
+	}
+	@Test
+	void distanciaTest() {
+		Complex[][] a = {{new Complex(-4,0),new Complex(-3,0)}};
+		Complex[][] b = {{new Complex(2,0),new Complex(5,0)}};
+		Double r = ComplexMath.distancia(a, b);	
+		assertEquals(r+1,11.0);
+	}
+	@Test
+	void productomTest() {
+		Complex[][] a = {{new Complex(2,0),new Complex(0,0)},{new Complex(1,0),new Complex(3,0)}};
+		Complex[][] b = {{new Complex(-1,0),new Complex(-1,0)},{new Complex(5,0),new Complex(6,0)}};
+		ComplexMatriz r = new ComplexMatriz(new Complex[][]	{{new Complex(-2,0),new Complex(-2,0)},{new Complex(14,0),new Complex(17,0)}});
+		assertTrue(ComplexMath.productoM(a, b).equals(r));
+	}
+	@Test
+	void tensorTest() {
+		Complex[][] a = {{new Complex(1,0),new Complex(2,0)},{new Complex(3,0),new Complex(1,0)}};
+		Complex[][] b = {{new Complex(0,0),new Complex(3,0)},{new Complex(2,0),new Complex(1,0)}};
+		ComplexMatriz r = new ComplexMatriz(new Complex[][]	{{new Complex(0,0),new Complex(3,0),new Complex(0,0),new Complex(6,0)},{new Complex(2,0),new Complex(1,0),new Complex(4,0),new Complex(2,0)},{new Complex(0,0),new Complex(9,0),new Complex(0,0),new Complex(3,0)},{new Complex(6,0),new Complex(3,0),new Complex(2,0),new Complex(1,0)}});
+		assertTrue(ComplexMath.productoTensor(a, b).equals(r));
+	}
 }

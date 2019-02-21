@@ -78,23 +78,13 @@ public class ComplexMath{
         }
         return new ComplexMatriz(r);
     }
-	public Double distancia(Complex[][] m1, Complex[][] m2) {
+	public static Double distancia(Complex[][] m1, Complex[][] m2) {
 		ComplexMatriz r  = new ComplexMatriz(new Complex [m1.length][m1[0].length]);
 		Double r2= 0.0;
 		r = restaM(m1,m2);
 		r2 = r.moduloM();
 		return  r2;
 	}
-	public static Complex productoInterno(Complex[][] m1, Complex[][] m2) {
-			Complex r = new Complex(0,0);
-	 		for(int i = 0; i< m1.length; i++){
-	 			for(int j = 0; j< m1[0].length; j++){
-	 				r = suma(r,producto(m1[i][j],m2[i][j]));
-	 			}
-	 		}
-	 		return r;
-	}
-	
 	public static ComplexMatriz productoTensor(Complex[][] m1, Complex[][] m2){
         Complex[][] r = new Complex [m1.length*m2.length][m1[0].length*m2[0].length];
         for(int i=0;i<m1.length;i++){
@@ -108,11 +98,6 @@ public class ComplexMath{
                 }
 
             }
-
-
-        return new ComplexMatriz(r);
-
-    }
-	
-	
+        	return new ComplexMatriz(r);
+		}		
 }

@@ -117,7 +117,7 @@ public class ComplexMath{
 	public static Complex[] canicasExperimento(Complex[][] m1, Complex[] v, int clics) {
 		Complex[] r = v;
 		for (int i = 0; i < clics; i++) {
-			r = productoMV(m1, v);
+			r = productoMV(m1, r);
 		}
 		return r;
 	}

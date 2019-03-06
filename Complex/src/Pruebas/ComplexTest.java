@@ -118,7 +118,7 @@ class ComplexTest {
 		for(int i=0;i<r.length;i++){
 				assertTrue(r[i].equals(r2[i]));
 		}
-		
+
 	}
 	
 }

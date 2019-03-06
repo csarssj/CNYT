@@ -95,4 +95,30 @@ class ComplexTest {
 		ComplexMatriz r = new ComplexMatriz(new Complex[][]	{{new Complex(0,0),new Complex(3,0),new Complex(0,0),new Complex(6,0)},{new Complex(2,0),new Complex(1,0),new Complex(4,0),new Complex(2,0)},{new Complex(0,0),new Complex(9,0),new Complex(0,0),new Complex(3,0)},{new Complex(6,0),new Complex(3,0),new Complex(2,0),new Complex(1,0)}});
 		assertTrue(ComplexMath.productoTensor(a, b).equals(r));
 	}
+		
+	@Test
+	void canicasTest() {
+		Complex[] a = {new Complex(6,0),new Complex(2,0),new Complex(1,0),new Complex(5,0),new Complex(3,0),new Complex(10,0)};
+		Complex[][] b = new Complex[6][6];
+		Complex[] r2 = {new Complex(0,0),new Complex(0,0),new Complex(12,0),new Complex(5,0),new Complex(1,0),new Complex(9,0)};
+		for(int i=0;i<6;i++){
+	            for(int j=0;j<6;j++){
+	            	b[i][j] = new Complex(0,0);
+            }
+        }
+		b[2][1] = new Complex(1,0);
+		b[2][5] = new Complex(1,0);
+		b[3][3] = new Complex(1,0);
+		b[4][2] = new Complex(1,0);
+		b[5][0] = new Complex(1,0);
+		b[5][4] = new Complex(1,0);
+		
+
+		Complex[] r = ComplexMath.canicasExperimento(b, a, 1);
+		for(int i=0;i<r.length;i++){
+				assertTrue(r[i].equals(r2[i]));
+		}
+		
+	}
+	
 }

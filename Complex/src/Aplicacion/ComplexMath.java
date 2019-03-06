@@ -78,6 +78,20 @@ public class ComplexMath{
         }
         return new ComplexMatriz(r);
     }
+	public static Complex[] productoMV(Complex[][] m1, Complex[] v) {
+        Complex sum; 
+        Complex r [] = new Complex [v.length];
+        for (int i = 0; i < m1.length; i++) {
+        	sum = new Complex(0,0);
+			for (int j = 0; j < v.length; j++) {
+                sum = suma(sum,producto(m1[i][j],v[j]));
+                }
+			
+            r[i] = sum;
+            }
+       return r;
+       
+    }  
 	public static Double distancia(Complex[][] m1, Complex[][] m2) {
 		ComplexMatriz r  = new ComplexMatriz(new Complex [m1.length][m1[0].length]);
 		Double r2= 0.0;
@@ -99,5 +113,22 @@ public class ComplexMath{
 
             }
         	return new ComplexMatriz(r);
-		}		
+		}
+	public static Complex[] canicasExperimento(Complex[][] m1, Complex[] v, int clics) {
+		Complex[] r = v;
+		for (int i = 0; i < clics; i++) {
+			r = productoMV(m1, v);
+		}
+		return r;
+	}
+		
+	public static ComplexMatriz rendijasExperimento(int slits, int targets) {
+        Complex[][] r  = new Complex [1+slits+targets][1+slits+targets];
+        for(int i=0;i<r.length;i++){
+            for(int j=0;j<r[0].length;j++){
+            	r[i][j] = new Complex(0,0);
+            }
+        }
+		return new ComplexMatriz(r);		
+	}
 }

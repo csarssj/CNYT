@@ -122,13 +122,30 @@ public class ComplexMath{
 		return r;
 	}
 		
-	public static ComplexMatriz rendijasExperimento(int slits, int targets) {
-        Complex[][] r  = new Complex [1+slits+targets][1+slits+targets];
-        for(int i=0;i<r.length;i++){
-            for(int j=0;j<r[0].length;j++){
-            	r[i][j] = new Complex(0,0);
-            }
-        }
-		return new ComplexMatriz(r);		
+	public static Complex[] rendijasExperimento(Complex[][] m1, Complex[] v, int slits) {
+		ComplexMatriz r = new ComplexMatriz(m1);
+		Complex[] r2 = v;
+		for (int i = 0; i < slits; i++) {
+			r = productoM(m1, r.getMatriz());
+		}
+		return r2;
 	}
+
+    public double probaPos(Complex[][] ket, int punto){
+    	ComplexMatriz r = new ComplexMatriz(ket);
+        double proba=  Math.pow(r.getMatriz()[punto][0].modulo(),2)/Math.pow(r.moduloM(),2);
+        return proba;
+    }
+
+
+
+    public  ComplexMatriz bra(Complex[][] ket){
+    	ComplexMatriz r = new ComplexMatriz(ket);
+    	return r.adjunta();
+    }
+
+
+
+
+
 }

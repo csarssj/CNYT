@@ -98,7 +98,7 @@ class ComplexTest {
 		
 	@Test
 	void canicasTest() {
-		Complex[] a = {new Complex(6,0),new Complex(2,0),new Complex(1,0),new Complex(5,0),new Complex(3,0),new Complex(10,0)};
+		Complex[] a = {new Complex(5,0),new Complex(5,0),new Complex(0,0),new Complex(2,0),new Complex(0,0),new Complex(15,0)};
 		Complex[][] b = new Complex[6][6];
 		Complex[] r2 = {new Complex(0,0),new Complex(0,0),new Complex(12,0),new Complex(5,0),new Complex(1,0),new Complex(9,0)};
 		for(int i=0;i<6;i++){
@@ -118,6 +118,7 @@ class ComplexTest {
 		for(int i=0;i<r.length;i++){
 				assertTrue(r[i].equals(r2[i]));
 		}
+
 
 	}
 	

@@ -99,6 +99,16 @@ public class ComplexMath{
 		r2 = r.moduloM();
 		return  r2;
 	}
+	
+    public Complex productoInterno(Complex[][] m1, Complex[][] m2)  {
+        Complex sum = new Complex(0,0);
+        for(int i = 0; i< m1.length; i++){
+            for(int j = 0; j< m1[0]].length; j++){
+                sum = suma(sum,producto(m1[i][j],m2[i][j]));
+            }
+        }
+        return sum;
+    }
 	public static ComplexMatriz productoTensor(Complex[][] m1, Complex[][] m2){
         Complex[][] r = new Complex [m1.length*m2.length][m1[0].length*m2[0].length];
         for(int i=0;i<m1.length;i++){

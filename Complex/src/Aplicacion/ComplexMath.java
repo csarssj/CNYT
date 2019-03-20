@@ -100,14 +100,22 @@ public class ComplexMath{
 		return  r2;
 	}
 	
-    public Complex productoInterno(Complex[][] m1, Complex[][] m2)  {
+    public static Complex productoInterno(Complex[][] m1, Complex[][] m2)  {
         Complex sum = new Complex(0,0);
         for(int i = 0; i< m1.length; i++){
-            for(int j = 0; j< m1[0]].length; j++){
+            for(int j = 0; j< m1[0].length; j++){
                 sum = suma(sum,producto(m1[i][j],m2[i][j]));
             }
         }
         return sum;
+    }
+    public static Complex  productoInternoV(Complex[] v1, Complex[] v2) {
+    	Complex sum = new Complex(0,0);
+        for (int i = 0; i < v1.length; i++) {
+             sum = suma(sum, producto(v1[i],v2[i]));
+        }
+        return sum;
+
     }
 	public static ComplexMatriz productoTensor(Complex[][] m1, Complex[][] m2){
         Complex[][] r = new Complex [m1.length*m2.length][m1[0].length*m2[0].length];
@@ -141,21 +149,26 @@ public class ComplexMath{
 		return r2;
 	}
 
-    public double probaPos(Complex[][] ket, int punto){
-    	ComplexMatriz r = new ComplexMatriz(ket);
-        double proba=  Math.pow(r.getMatriz()[punto][0].modulo(),2)/Math.pow(r.moduloM(),2);
+    public static double probaPos(Complex[] ket, int punto){
+    	ComplexVector r = new ComplexVector(ket);
+        double proba=  Math.pow(r.getVector()[punto].modulo(),2)/Math.pow(r.moduloM(),2);
         return proba;
     }
 
-
-
-    public  ComplexMatriz bra(Complex[][] ket){
-    	ComplexMatriz r = new ComplexMatriz(ket);
+    public static  ComplexVector bra(Complex[] ket){
+    	ComplexVector r = new ComplexVector(ket);
     	return r.adjunta();
+    }
+    
+    public static Complex amplitudT(Complex[] v1, Complex[] v2 ) {
+    	Complex interno = productoInternoV(bra(v1).getVector(),v2);
+    	double norma1 = new ComplexVector(v1).moduloM();
+    	double norma2 = new ComplexVector(v2).moduloM();
+        return new Complex(interno.getReal()/(norma1*norma2),interno.getImg()/(norma1*norma2));
     }
 
 
-
+    
 
 
 }

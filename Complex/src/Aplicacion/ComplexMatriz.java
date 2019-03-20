@@ -2,10 +2,19 @@ package Aplicacion;
 
 public class ComplexMatriz {
 	private Complex[][] matriz;
+	int m,n;
 
 	public ComplexMatriz(Complex[][] r) {
 		this.matriz = r;
 	}
+	public ComplexMatriz(int m,int n){
+        this.m = m;
+        this.n = n;
+        this.matriz = new Complex[m][n];
+    }
+	public void add (Complex a, int i , int j){
+        this.matriz [i][j] = a;
+    }
 	
 	public  ComplexMatriz traspuesta(){ 
 	    Complex r [][] = new Complex [matriz[0].length][matriz.length];

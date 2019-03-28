@@ -89,6 +89,14 @@ public class ComplexMath{
 			
             r[i] = sum;
             }
+       int  cont = 1; 
+      // for (int j = 0; j < r.length; j++) {
+    	//   System.out.println(cont);
+    	 //  System.out.println("real " +String.valueOf(r[j].getReal()));
+    	  /// System.out.println(r[j].getImg());
+    	   //cont += 1;
+       //} 
+       ///System.out.println(r.length);
        return r;
        
     }  
@@ -167,8 +175,36 @@ public class ComplexMath{
         return new Complex(interno.getReal()/(norma1*norma2),interno.getImg()/(norma1*norma2));
     }
 
-
-    
+    public static Complex mean(Complex[][] observable, Complex[] ket) {
+    	return productoInternoV(bra(productoMV(new ComplexMatriz(observable).getMatriz(),ket)).getVector(),ket);
+    	
+    }
+    public static Complex varianza(Complex[][] observable, Complex[] ket) {
+    	if (!new ComplexMatriz(observable).hermitiana()) {
+    		System.out.println("El observable no es hermitiano");
+    		//retorna en 0 si no es hermitiano
+    		return new Complex(0,0);
+    	}
+    	else {
+    		Complex valorM = mean(observable,ket);
+    		Complex[][] identidad = new Complex[observable.length][observable[0].length];	
+    		for(int i=0;i<observable.length;i++){
+                for(int j=0;j<observable[0].length;j++){
+                	if (i==j) {
+                		identidad[i][j]=valorM;
+                	}
+                	else {
+                		identidad[i][j]= new Complex(0,0);
+                	}
+                }
+    		}
+    		ComplexMatriz resta = restaM(observable,identidad);  
+    		ComplexMatriz producto = productoM(resta.getMatriz(),resta.getMatriz());  
+    		Complex[] r1 = productoMV(producto.getMatriz(),ket);
+    		Complex r2= productoInternoV(r1,bra(ket).getVector());
+    		return r2; 
+    	}
+}
 
 
 }

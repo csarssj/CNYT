@@ -96,7 +96,7 @@ class ComplexTest {
 		assertTrue(ComplexMath.productoTensor(a, b).equals(r));
 	}
 		
-	@Test
+	/***@Test
 	void canicasTest() {
 		Complex[] a = {new Complex(6,0),new Complex(2,0),new Complex(1,0),new Complex(5,0),new Complex(3,0),new Complex(10,0)};
 		Complex[][] b = new Complex[6][6];
@@ -118,11 +118,11 @@ class ComplexTest {
 		for(int i=0;i<r.length;i++){
 				assertTrue(r[i].equals(r2[i]));
 		}
-	}
+	}***/
 	@Test 
 	void probabilidadEnXTest() {
 		Complex[] a = {new Complex(-3,-1),new Complex(0,-2),new Complex(0,1),new Complex(2,0)};
-		 assertEquals(ComplexMath.probaPos(a,2),0.05263157894736841);
+		assertEquals(ComplexMath.probaPos(a,2),0.05263157894736841);
 	}
 	@Test
 	void amplitudTest() {
@@ -131,6 +131,19 @@ class ComplexTest {
 		assertTrue(ComplexMath.amplitudT(b, a).equals(new Complex(0,-0.9999999999999998)));	
 
 
+	}
+	@Test
+	void valorMTest() {
+		Complex[] ket = {new Complex(Math.sqrt(2)/2,0),new Complex(0,Math.sqrt(2)/2)};
+		Complex[][] observable = {{new Complex(1,0),new Complex(0,-1)},{new Complex(0,1),new Complex(2,0)}};
+		assertTrue(ComplexMath.mean(observable, ket).equals(new Complex(2.5000000000000004,0)));
+		
+	}
+	@Test	
+	void varianzaTest() {
+		Complex[][] observable = {{new Complex(1,0),new Complex(0,-1)},{new Complex(0,1),new Complex(2,0)}};
+		Complex[] ket = {new Complex(Math.sqrt(2)/2,0),new Complex(0,Math.sqrt(2)/2)};
+		assertTrue(ComplexMath.varianza(observable, ket).equals(new Complex(0.25,0.0)));
 	}
 	
 }

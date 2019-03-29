@@ -1,9 +1,10 @@
- 	package Pruebas;
+ package Pruebas;
 import  Aplicacion.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 class ComplexTest {
 
 	@Test
@@ -96,7 +97,7 @@ class ComplexTest {
 		assertTrue(ComplexMath.productoTensor(a, b).equals(r));
 	}
 		
-	/***@Test
+	@Test
 	void canicasTest() {
 		Complex[] a = {new Complex(6,0),new Complex(2,0),new Complex(1,0),new Complex(5,0),new Complex(3,0),new Complex(10,0)};
 		Complex[][] b = new Complex[6][6];
@@ -118,7 +119,7 @@ class ComplexTest {
 		for(int i=0;i<r.length;i++){
 				assertTrue(r[i].equals(r2[i]));
 		}
-	}***/
+	}
 	@Test 
 	void probabilidadEnXTest() {
 		Complex[] a = {new Complex(-3,-1),new Complex(0,-2),new Complex(0,1),new Complex(2,0)};
@@ -145,5 +146,17 @@ class ComplexTest {
 		Complex[] ket = {new Complex(Math.sqrt(2)/2,0),new Complex(0,Math.sqrt(2)/2)};
 		assertTrue(ComplexMath.varianza(observable, ket).equals(new Complex(0.25,0.0)));
 	}
-	
+	@Test
+	void sistemaTets() {
+		Complex[][] m1 = {{new Complex(0,0),new Complex(1,0)},{new Complex(1,0),new Complex(0,0)}};
+		Complex[][] m2 = {{new Complex(Math.sqrt(2) / 2,0),new Complex(Math.sqrt(2) / 2,0)},{new Complex(Math.sqrt(2) / 2,0),new Complex(Math.sqrt(2) / 2,0)}};
+		Complex[] o = {new Complex(1,0),new Complex(1,0)};
+		ComplexVector r = new ComplexVector(new Complex[]{new Complex(1.4142135623730951,0),new Complex(1.4142135623730951,0)});
+		ArrayList<Complex[][]> orbit = new ArrayList<Complex[][]>();
+		orbit.add(m1);
+        orbit.add(m2);
+        ComplexVector r1 = new ComplexVector(ComplexMath.sistemaDinamica(o,orbit));
+        assertTrue(r1.equals(r));
+
+	}
 }

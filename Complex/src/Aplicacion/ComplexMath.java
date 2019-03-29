@@ -1,4 +1,5 @@
 package Aplicacion;
+import java.util.ArrayList;
 
 public class ComplexMath{
 	public ComplexMath(){
@@ -90,13 +91,6 @@ public class ComplexMath{
             r[i] = sum;
             }
        int  cont = 1; 
-      // for (int j = 0; j < r.length; j++) {
-    	//   System.out.println(cont);
-    	 //  System.out.println("real " +String.valueOf(r[j].getReal()));
-    	  /// System.out.println(r[j].getImg());
-    	   //cont += 1;
-       //} 
-       ///System.out.println(r.length);
        return r;
        
     }  
@@ -204,7 +198,16 @@ public class ComplexMath{
     		Complex r2= productoInternoV(r1,bra(ket).getVector());
     		return r2; 
     	}
-}
+    }
+
+    public static Complex[] sistemaDinamica(Complex[] v1, ArrayList<Complex [][]> m2) { 
+        Complex[] res = v1;
+        for(int i = 0; i< m2.size(); i++){
+            res = productoMV(m2.get(i), v1);
+        }
+        return res;
+    }
+	
 
 
 }
